@@ -7,26 +7,39 @@
     <script src="./js/dfd-script.js"></script>
     <script>
         loaded(()=>{
+            /* le script cse lance après que la page soit chargée*/
             console.log('page chargée');
-            let mainHeader = q('body > header');
-            console.log(mainHeader);
-            let allNavLinks = q('body > nav a');
-            console.log('Tous les liens avant création d\'un lien avec dfd : ', allNavLinks);
+            /* la fonction q pour récupérer un élément défini */
             let oneHeader = q('body > header');
             console.log('Un seul header enfant direct de body', oneHeader);
+            
+            /* la fonction q pour récupérer une collection d'éléments  */
+            let allNavLinks = q('body > nav a');
+            console.log('Tous les liens avant création d\'un lien avec dfd : ', allNavLinks);
+
+            /* ajouter un lien dans la liste de la nav */
+            /* récupération de l'élément ul */
             let linkNav = q('body > nav > ul');
+            /* création du li */
             let newLi = cEO('li');
+            /* ajout du li dans ul */
             linkNav.append(newLi);
-            let liOptions = {
-                href:'#', 
-                class: ['nav-link', 'item'], 
-                style: ['font-weight: bold;', 'text-transform:uppercase;'],
-                'data-test': 'dataset test'
+            /* option de l'élément a que l'on va créer */
+            let aOptions = {
+                href:'#', /* l'url du lien */
+                class: ['nav-link', 'item'], /* on ajoute des classes au lien */
+                style: ['font-weight: bold;', 'text-transform:uppercase;'], /* on ajoute du style au lien */
+                'data-test': 'dataset test' /* on ajoute un dataset au lien */
             };
-            let newLiLink = cEO('a', liOptions);
+            /* création du a avec les options définies précédemment */
+            let newLiLink = cEO('a', aOptions);
+            /* ajout du a au li */
             newLi.append(newLiLink);
+            /* création du texte à l'intérieur du lien */
             let newLinkText = cTN('nouveau lien créé avec DFD');
+            /* ajout du texte dans a */
             newLiLink.append(newLinkText);
+            /* le lien est bien ajouté dans le DOM */
             allNavLinks = q('body > nav a');
             console.log('Tous les liens après création d\'un lien avec dfd : ', allNavLinks);
         });

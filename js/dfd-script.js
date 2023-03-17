@@ -25,8 +25,16 @@ function cEO(element, options = {}){
     /**
      * crée un élément dans le DOM et ses attributs, classes et / ou style
      * des classes ou des styles doivent être définies dans des tableaux dans l'objet options.
-     * les clefs de l'objet option sont utilisées pour représenter l'attribut, 
+     * 
+     * les clefs de l'objet options sont utilisées pour représenter l'attribut, 
      * donc pour des attribut comme les dataset on écrira 'data-test': 'valeur'
+     * 
+     * Insérrer une classe
+     *      class: ['classe1', 'classe2', ... ]
+     * 
+     * Insérrer du style
+     *      style: ['property: value;', 'property: value;', ...]
+     * il faut ABSOLUMENT ajouter le ; à la fin d'une propriété CSS pour les classes.
      */
     let newElement = document.createElement(element);
     for(let key in options){
