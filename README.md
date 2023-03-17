@@ -8,5 +8,5 @@
 * D'autres encore qui sont en cuisine
 
 ### Usages
-* Le fichier dfd-script.js est a appeler dans le <head />
+* Le fichier dfd-script.js est a appeler dans le ```<head />```
 * Le fichier index.html montre un exemple d'utilisation des fonctions
