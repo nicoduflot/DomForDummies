@@ -29,7 +29,7 @@ option est un objet litéral
 * la valeur des attributs de l'objet sont les valeurs de l'attribut de l'élément
 * les attributs tels que ```class``` et ```style``` sont a renseigner en tableau
 ```
-option{
+options = {
     href: '#',
     class: ['class1', 'class2', ...],
     style: ['property: value;', 'property: value;', ... 'property: value;']
