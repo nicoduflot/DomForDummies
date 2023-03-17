@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM For Dummies</title>
+    <script src="./js/dfd-script.js"></script>
+    <script>
+        loaded(()=>{
+            console.log('page chargée');
+            let mainHeader = q('body > header');
+            console.log(mainHeader);
+            let allNavLinks = q('body > nav a');
+            console.log('Tous les liens avant création d\'un lien avec dfd : ', allNavLinks);
+            let oneHeader = q('body > header');
+            console.log('Un seul header enfant direct de body', oneHeader);
+            let linkNav = q('body > nav > ul');
+            let newLi = cEO('li');
+            linkNav.append(newLi);
+            let liOptions = {
+                href:'#', 
+                class: ['nav-link', 'item'], 
+                style: ['font-weight: bold;', 'text-transform:uppercase;'],
+                'data-test': 'dataset test'
+            };
+            let newLiLink = cEO('a', liOptions);
+            newLi.append(newLiLink);
+            let newLinkText = cTN('nouveau lien créé avec DFD');
+            newLiLink.append(newLinkText);
+            allNavLinks = q('body > nav a');
+            console.log('Tous les liens après création d\'un lien avec dfd : ', allNavLinks);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>DOM For Dummies</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">test</a></li>
+            <li><a href="#">test</a></li>
+            <li><a href="#">test</a></li>
+            <li><a href="#">test</a></li>
+        </ul>
+    </nav>
+    <main>
+
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
