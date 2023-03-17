@@ -9,4 +9,5 @@
 
 ### Usages
 * Le fichier dfd-script.js est a appeler dans le ```<head />```
+* dfd-script.js contient en commentaire dans les fonctions leur utilisation (simple promis)
 * Le fichier index.html montre un exemple d'utilisation des fonctions
