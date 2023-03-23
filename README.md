@@ -1,5 +1,7 @@
 # Dom For Dummies
 
+La page ```index.html``` donne dans le code des exemples d'utilisation
+
 ## Petite bibliothèque de fonctions de raccourcis pour agir sur le DOM
 
 * Attendre que le DOM soit chargé
