@@ -36,7 +36,11 @@ function q(selector){
  * 
  * Insérrer du style
  *      style: ['property: value;', 'property: value;', ...]
+ * 
  * il faut ABSOLUMENT ajouter le ; à la fin d'une propriété CSS pour les classes.
+ * 
+ * Ajouter l'élément créé au parent
+ *  Il faut le selector du parent ciblé
  * 
  * @param {string} element  - tagname of the html element
  * @param {object} options  - option for the html element attributes
