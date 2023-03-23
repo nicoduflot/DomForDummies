@@ -38,8 +38,9 @@ function q(selector){
  *      style: ['property: value;', 'property: value;', ...]
  * il faut ABSOLUMENT ajouter le ; à la fin d'une propriété CSS pour les classes.
  * 
- * @param {string} element - tagname of the html element
- * @param {Object} options - option for the html element attributes
+ * @param {string} element  - tagname of the html element
+ * @param {object} options  - option for the html element attributes
+ * @param {string} parent   - selector for the html element parent when added as a child element
  */
 function cEO(element, options = {}, parent = null){
     
@@ -61,7 +62,8 @@ function cEO(element, options = {}, parent = null){
 /**
  * crée un noeud de text
  * @param {string} content - text content of the text node
- */
+ * @param {object} parent - the parent DOM Object /!\ NOT THE SELECTOR /!\
+*/
 function cTN(content, parent = null){
     let textNode = document.createTextNode(content);
     if(null !== parent){
