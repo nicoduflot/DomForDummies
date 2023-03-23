@@ -6,7 +6,6 @@
 * Un querySelector qui renvoi une collection ou un seul élément, selon le selecteur (plus a choisir entre un selector ou selectorAll)
 * Un créateur d'élément DOM avec options pour inclure directement les attribut de l'élément.
 * Un créateur d'élément DOM
-* 
     * avec options pour inclure directement les attribut de l'élément.
     * l'élément créé peut directement être ajouter en tant qu'enfant à un élément parent en indiquant le selecteur du parent
 * D'autres encore qui sont en cuisine
