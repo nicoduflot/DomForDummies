@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM For Dummies</title>
+    <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/dfd-script.js"></script>
     <script>
-        loaded(()=>{
+        loaded(() => {
             /* le script cse lance après que la page soit chargée*/
             console.log('page chargée');
             /* la fonction q pour récupérer un élément défini */
             let oneHeader = q('body > header');
             console.log('Un seul header enfant direct de body', oneHeader);
-            
+
             /* la fonction q pour récupérer une collection d'éléments  */
             let allNavLinks = q('body > nav a');
             console.log('Tous les liens avant création d\'un lien avec dfd : ', allNavLinks);
@@ -26,7 +28,7 @@
             linkNav.append(newLi);
             /* option de l'élément a que l'on va créer */
             let aOptions = {
-                href:'#', /* l'url du lien */
+                href: '#', /* l'url du lien */
                 class: ['nav-link', 'item'], /* on ajoute des classes au lien */
                 style: ['font-weight: bold;', 'text-transform:uppercase;'], /* on ajoute du style au lien */
                 'data-test': 'dataset test' /* on ajoute un dataset au lien */
@@ -42,14 +44,30 @@
             /* le lien est bien ajouté dans le DOM */
             allNavLinks = q('body > nav a');
             console.log('Tous les liens après création d\'un lien avec dfd : ', allNavLinks);
+
+            /*
+            let numbers = [1, 2, 3, 4, 5];
+            let copyNumbers = [...numbers];
+            copyNumbers.reverse();
+            console.log(copyNumbers);
+            console.log(numbers);
+            */
+
+            let spanOptions = {
+                style: ['font-weight: bold;', 'text-transform:uppercase;'], /* on ajoute du style au lien */
+                'data-span': 'dataset span' /* on ajoute un dataset au lien */
+            };
+            let span = cEO('span', spanOptions, '#parent');
+            cTN('Mon span en utilisant l\'ajout à un parent de cEO et la création de text node avec l\'ajout à un parent !', span);
         });
     </script>
 </head>
+
 <body>
-    <header>
+    <header class="mainHeader">
         <h1>DOM For Dummies</h1>
     </header>
-    <nav>
+    <nav class="mainNav">
         <ul>
             <li><a href="#">test</a></li>
             <li><a href="#">test</a></li>
@@ -58,12 +76,71 @@
         </ul>
     </nav>
     <main>
-        <p>
-            Gitignore ?
-        </p>
+        <section>
+            <article>
+                <h2>Petite bibliothèque de fonctions de raccourcis pour agir sur le DOM</h2>
+                <ul>
+                    <li>Attendre que le DOM soit chargé</li>
+                    <li>Un querySelector qui renvoi une collection ou un seul élément, selon le selecteur (plus a
+                        choisir entre un selector ou selectorAll)</li>
+                    <li>Un créateur d'élément DOM
+                        <ul>
+                            <li>avec options pour inclure directement les attribut de l'élément.</li>
+                            <li>l'élément créé peut directement être ajouter en tant qu'enfant à un élément parent en indiquant le selecteur du parent</li>
+                        </ul>
+                    </li>
+                    <li>D'autres encore qui sont en cuisine</li>
+                </ul>
+                <h3>Usages</h3>
+                <ul>
+                    <li>Le fichier dfd-script.js est a appeler dans le <code>&lt;head /&gt;</code></li>
+                    <li>dfd-script.js contient en commentaire dans les fonctions leur utilisation (simple promis)</li>
+                    <li>Le fichier index.html montre un exemple d'utilisation des fonctions</li>
+                </ul>
+                <h3>Fonctions</h3>
+                <h4>loaded(selector)</h4>
+                <p>
+                    Loaded retourne simplement la formulation <code>window.addEventListener(callable)</code>
+                </p>
+                <h4>q(selector)</h4>
+                <p>
+                    q fait un querySelectorAll du selecteur, ensuite analyse la collection.
+                    si la collection n'est qu'un élément, l'élément est retourné comme pour un querySelector,
+                    sinon retourne la collection comme un querySelectorAll
+                </p>
+                <h4>cEO(element, options = {}, parent = null)</h4>
+                <p>
+                    Combine createElement, setAttribute et appendChild.
+                </p>
+                <ul>
+                    <li>option est un objet litéral</li>
+                    <li>les noms des attribut de l'objet sont les noms des attributs de l'élément.</li>
+                    <li>la valeur des attributs de l'objet sont les valeurs de l'attribut de l'élément</li>
+                    <li>les attributs tels que ```class``` et ```style``` sont a renseigner en tableau</li>
+                    <li>on peut indique en troisième attribut le sélecteur d'un élément parent dans lequel l'élément créé est ajouté</li>
+                    <li>la fonction retourne par défaut l'élément créé</li>
+                </ul>
+                <code>
+                    options = {<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;href: '#',<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;class: ['class1', 'class2', ...],<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;style: ['property: value;', 'property: value;', ... 'property: value;']</code><br />
+                }<br />
+                </code>
+                <h4>cTN(content, parent = null)</h4>
+                <p>
+                    retourne un text node créé avec  <code>window.createTextNode(content)</code><br />
+                    Possibilité de mettre en second paramètre l'élément (en variable) parent dans lequel on ajoute le text node.
+                </p>
+                <div id="parent">
+
+                </div>
+            </article>
+        </section>
     </main>
     <footer>
 
     </footer>
 </body>
+
 </html>
