@@ -43,5 +43,6 @@ options = {
 ```
 
 #### cTN(content, parent = null)
-retourne un text node créé avec ```window.createTextNode(content)```
-Possibilité de mettre en second paramètre l'élément (en variable) parent dans lequel on ajoute le text node.
+* retourne un text node créé avec ```window.createTextNode(content)```
+* Possibilité de mettre en second paramètre l'élément (en variable) parent dans lequel on ajoute le text node.
+* la fonction retourne par défaut le text node
