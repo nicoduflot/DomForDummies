@@ -3,7 +3,6 @@
  * @author  Nicolas Duflot
  * @since   17/03/2023
  * @desc    Petite bibliothèque de fonctions de raccourcis pour agir sur le DOM
- * 
  */
 /**
  * attendre que le DOM soit chargé
