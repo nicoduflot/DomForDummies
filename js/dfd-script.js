@@ -5,7 +5,6 @@
  * @desc    Petite bibliothèque de fonctions de raccourcis pour agir sur le DOM
  * 
  */
-
 /**
  * attendre que le DOM soit chargé
  * @param {function} callable
@@ -47,7 +46,6 @@ function q(selector){
  * @param {string} parent   - selector for the html element parent when added as a child element
  */
 function cEO(element, options = {}, parent = null){
-    
     let newElement = document.createElement(element);
     for(let key in options){
         if(typeof options[key] === 'object'){
@@ -62,7 +60,6 @@ function cEO(element, options = {}, parent = null){
     }
     return newElement;
 }
-
 /**
  * crée un noeud de text
  * @param {string} content - text content of the text node
