@@ -16,7 +16,7 @@ function loaded(callable){
  * ou 
  * une collection d'élément du DOM
  * dépend du selecteur
- * @param {string} selector - selector for the html element(s)
+ * @param {string} selector - sélécteur CSS du ou des éléments
  */
 function q(selector){
     let collection = document.querySelectorAll(selector);
@@ -40,9 +40,9 @@ function q(selector){
  * Ajouter l'élément créé au parent
  *  Il faut le selector du parent ciblé
  * 
- * @param {string} element  - tagname of the html element
- * @param {object} options  - option for the html element attributes
- * @param {string} parent   - selector for the html element parent when added as a child element
+ * @param {string} element  - tagname de l'élément html
+ * @param {object} options  - options pour les attributs, classes et attribut style de l'élément a créer
+ * @param {string} parent   - l'objet DOM du parent dans lequel on ajoute le textnode /!\ PAS LE SÉLECTEUR /!\
  */
 function cEO(element, options = {}, parent = null){
     let newElement = document.createElement(element);
@@ -55,14 +55,14 @@ function cEO(element, options = {}, parent = null){
         }      
     }
     if(null !== parent){
-        q(parent).appendChild(newElement)
+        parent.appendChild(newElement)
     }
     return newElement;
 }
 /**
  * crée un noeud de text
- * @param {string} content - text content of the text node
- * @param {object} parent - the parent DOM Object /!\ NOT THE SELECTOR /!\
+ * @param {string} content - contenu texte du textnode
+ * @param {object} parent - l'objet DOM du parent dans lequel on ajoute le textnode /!\ PAS LE SÉLECTEUR /!\
 */
 function cTN(content, parent = null){
     let textNode = document.createTextNode(content);

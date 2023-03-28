@@ -33,7 +33,7 @@ Combine createElement et setAttribute.
 * les noms des attribut de l'objet sont les noms des attributs de l'élément.
 * la valeur des attributs de l'objet sont les valeurs de l'attribut de l'élément
 * les attributs tels que ```class``` et ```style``` sont a renseigner en tableau
-* on peut indique en troisième attribut le sélecteur d'un élément parent dans lequel l'élément créé est ajouté
+* on peut indique en troisième attribut l'objet DOM du parent dans lequel on ajoute le textnode /!\ PAS LE SÉLECTEUR /!\
 * la fonction retourne par défaut l'élément créé
 
 ```

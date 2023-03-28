@@ -57,7 +57,7 @@
                 style: ['font-weight: bold;', 'text-transform:uppercase;'], /* on ajoute du style au lien */
                 'data-span': 'dataset span' /* on ajoute un dataset au lien */
             };
-            let span = cEO('span', spanOptions, '#parent');
+            let span = cEO('span', spanOptions, q('#parent'));
             cTN('Mon span en utilisant l\'ajout à un parent de cEO et la création de text node avec l\'ajout à un parent !', span);
         });
     </script>
@@ -117,7 +117,7 @@
                     <li>les noms des attribut de l'objet sont les noms des attributs de l'élément.</li>
                     <li>la valeur des attributs de l'objet sont les valeurs de l'attribut de l'élément</li>
                     <li>les attributs tels que ```class``` et ```style``` sont a renseigner en tableau</li>
-                    <li>on peut indique en troisième attribut le sélecteur d'un élément parent dans lequel l'élément créé est ajouté</li>
+                    <li>on peut indique en troisième attribut l'objet DOM du parent dans lequel on ajoute le textnode /!\ PAS LE SÉLECTEUR /!\</li>
                     <li>la fonction retourne par défaut l'élément créé</li>
                 </ul>
                 <code>
