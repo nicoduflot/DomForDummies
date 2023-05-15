@@ -70,6 +70,29 @@
             
             /* le textNode est créé et ajouté directement à un élément parent */
             cTN('Mon span en utilisant l\'ajout à un parent de cEO et la création de text node avec l\'ajout à un parent !', span);
+
+            q('#btnTestEraseChilds').addEventListener('click', function(){
+                erase_childs(q('#divTestEraseChilds'));
+            });
+            
+            q('#resetTestErase').addEventListener('click', function(){
+                let ul = cEO('ul', {}, q('#divTestEraseChilds'));
+                let li = cEO('li', {}, ul);
+                cTN('li enfant', li);
+                q('#divTestEraseChilds').append(ul);
+                let button = cEO('button');
+                cTN('bouton test enfant', button);
+                q('#divTestEraseChilds').append(button);
+
+            });
+
+
+            /*
+            <ul>
+                        <li>li enfant</li>
+                    </ul>
+                    <button>bouton test enfant</button>
+            */
         });
     </script>
 </head>
@@ -174,6 +197,20 @@
                         supprime (remove) tous les noeuds enfant de node
                     </li>
                 </ul>
+                <p>
+                    <button id="btnTestEraseChilds" >
+                        Effacer les enfants de la div
+                    </button> 
+                    <button id="resetTestErase">
+                        Remplir la div
+                    </button>
+                </p>
+                <div id="divTestEraseChilds" class="blackBorder">
+                    <ul>
+                        <li>li enfant</li>
+                    </ul>
+                    <button>bouton test enfant</button>
+                </div>
             </article>
         </section>
     </main>

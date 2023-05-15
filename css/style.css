@@ -2,6 +2,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.blackBorder{
+  border: 1px solid #000;
+}
+
 .mainHeader {
   display: flex;
   flex-wrap: wrap;
