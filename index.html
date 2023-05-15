@@ -19,6 +19,14 @@
             let allNavLinks = q('body > nav a');
             console.log('Tous les liens avant création d\'un lien avec dfd : ', allNavLinks);
 
+            let selectTest = q('#selectTest');
+            console.log('Objet de formulaire select ',selectTest);
+            console.log('valeur de l\'Objet de formulaire select ',selectTest.value);
+            
+            selectTest.addEventListener('change', function(){
+                console.log('Objet de formulaire select quand on change la valeur ',selectTest.value);
+            });
+
             /* ajouter un lien dans la liste de la nav */
             /* récupération de l'élément ul */
             let linkNav = q('body > nav > ul');
@@ -57,7 +65,10 @@
                 style: ['font-weight: bold;', 'text-transform:uppercase;'], /* on ajoute du style au lien */
                 'data-span': 'dataset span' /* on ajoute un dataset au lien */
             };
+            /* le span est créé, récupéré dans une variable et ajouté directement à un élément parent */
             let span = cEO('span', spanOptions, q('#parent'));
+            
+            /* le textNode est créé et ajouté directement à un élément parent */
             cTN('Mon span en utilisant l\'ajout à un parent de cEO et la création de text node avec l\'ajout à un parent !', span);
         });
     </script>
@@ -107,6 +118,21 @@
                     q fait un querySelectorAll du selecteur, ensuite analyse la collection.
                     si la collection n'est qu'un élément, l'élément est retourné comme pour un querySelector,
                     sinon retourne la collection comme un querySelectorAll
+                </p>
+                <p>
+                    <label for="selectTest">Selecteur</label><br />
+                    <select name="selectTest" id="selectTest">
+                        <optgroup label="nombres">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </optgroup>
+                        <optgroup label="texte">
+                            <option value="text1">text1</option>
+                            <option value="text2">text2</option>
+                            <option value="text3">text3</option>
+                        </optgroup>
+                    </select>
                 </p>
                 <h4>cEO(element, options = {}, parent = null)</h4>
                 <p>
