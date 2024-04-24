@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<repertoire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="repertoire.xsd">
+    <!-- Amélia EARHART -->
+    <personne type="physique">
+        <nom>EARHART</nom>
+        <prenom>Amélia</prenom>
+        <adresse>
+            <numero>28</numero>
+            <voie type="avenue">avenue de la république</voie>
+            <codePostal>66002</codePostal>
+            <ville>Atchinson</ville>
+            <pays>USA</pays>
+        </adresse>
+        <telephones>
+            <telephone type="bureau">04 05 06 07 08</telephone>
+        </telephones>
+        <emails>
+            <email type="professionnel">aearhart@flytogether.com</email>
+        </emails>
+    </personne>
+    <!-- John WALKER -->
+    <personne type="physique">
+        <nom>WALKER</nom>
+        <prenom>John</prenom>
+        <adresse>
+            <numero>7</numero>
+            <voie type="impasse">impasse du chemin</voie>
+            <codePostal>75015</codePostal>
+            <ville>PARIS</ville>
+            <pays>FRANCE</pays>
+        </adresse>
+        <telephones>
+            <telephone type="fixe">01 02 03 04 05</telephone>
+            <telephone type="portable">06 07 08 09 10</telephone>
+        </telephones>
+        <emails>
+            <email type="personnel">john.walker@wanadoo.fr</email>
+            <email type="professionnel">john.walker@texas-ranger.com</email>
+        </emails>
+    </personne>
+    <!-- ACME Inc. -->
+    <personne type="morale">
+        <nom>ACME Inc.</nom>
+        <adresse>
+            <numero>7</numero>
+            <voie type="impasse">impasse du chemin</voie>
+            <codePostal>75015</codePostal>
+            <ville>PARIS</ville>
+            <pays>FRANCE</pays>
+        </adresse>
+        <telephones>
+            <telephone type="fixe">01 02 03 04 05</telephone>
+            <telephone type="portable">06 07 08 09 10</telephone>
+        </telephones>
+        <emails>
+            <email type="personnel">john.walker@wanadoo.fr</email>
+            <email type="professionnel">john.walker@texas-ranger.com</email>
+        </emails>
+    </personne>
+
+</repertoire>

@@ -20,11 +20,11 @@
             console.log('Tous les liens avant création d\'un lien avec dfd : ', allNavLinks);
 
             let selectTest = q('#selectTest');
-            console.log('Objet de formulaire select ',selectTest);
-            console.log('valeur de l\'Objet de formulaire select ',selectTest.value);
-            
-            selectTest.addEventListener('change', function(){
-                console.log('Objet de formulaire select quand on change la valeur ',selectTest.value);
+            console.log('Objet de formulaire select ', selectTest);
+            console.log('valeur de l\'Objet de formulaire select ', selectTest.value);
+
+            selectTest.addEventListener('change', function () {
+                console.log('Objet de formulaire select quand on change la valeur ', selectTest.value);
             });
 
             /* ajouter un lien dans la liste de la nav */
@@ -67,15 +67,15 @@
             };
             /* le span est créé, récupéré dans une variable et ajouté directement à un élément parent */
             let span = cEO('span', spanOptions, q('#parent'));
-            
+
             /* le textNode est créé et ajouté directement à un élément parent */
             cTN('Mon span en utilisant l\'ajout à un parent de cEO et la création de text node avec l\'ajout à un parent !', span);
 
-            q('#btnTestEraseChilds').addEventListener('click', function(){
+            q('#btnTestEraseChilds').addEventListener('click', function () {
                 erase_childs(q('#divTestEraseChilds'));
             });
-            
-            q('#resetTestErase').addEventListener('click', function(){
+
+            q('#resetTestErase').addEventListener('click', function () {
                 let ul = cEO('ul', {}, q('#divTestEraseChilds'));
                 let li = cEO('li', {}, ul);
                 cTN('li enfant', li);
@@ -86,13 +86,67 @@
 
             });
 
+            q('#XML').addEventListener('click', function () {
+                fetch(q('#XML').dataset.xmlsource)
+                    .then(response => response.text())
+                    .then(xmlFlux => {
+                        /* créer un objet pour parser le XML */
+                        const parser = new DOMParser();
+                        /* parser le XML dans une constante */
+                        const xmlDoc = parser.parseFromString(xmlFlux, 'application/xml');
+                        /* 
+                        aller récupérer la racine du XML 
+                        keyword est le nom de l'élément racine du xml qui contient les données a afficher
+                        C'est nécessaire pour pouvoir parser correctement le XML
+                        */
+                        xmlData = xmlDoc.getElementsByTagName(q('#XML').dataset.keyword);
+                        let affichage = q(`#${q('#XML').dataset.target}`);
+                        affichage.classList.remove('error');
+                        /* on vide l'élément receveur */
+                        erase_childs(affichage);
+                        /* parser le contenu de la racine et l'afficher dans un élément */
+                        affichage.appendChild(parseXML(xmlData[0]));
+                    })
+                    .catch(e => console.error(e));
+            });
 
-            /*
-            <ul>
-                        <li>li enfant</li>
-                    </ul>
-                    <button>bouton test enfant</button>
-            */
+            q('#externXML').addEventListener('click', function () {
+                let affichage = q(`#${q('#XML').dataset.target}`);
+                affichage.classList.remove('error');
+                if (q('#ext-ressource').value !== '' && q('#ext-root-element').value !== '') {
+                    fetch(q('#ext-ressource').value)
+                        .then(response => response.text())
+                        .then(xmlFlux => {
+                            /* créer un objet pour parser le XML */
+                            const parser = new DOMParser();
+                            /* parser le XML dans une constante */
+                            const xmlDoc = parser.parseFromString(xmlFlux, 'application/xml');
+                            /* 
+                            aller récupérer la racine du XML 
+                            keyword est le nom de l'élément racine du xml qui contient les données a afficher
+                            C'est nécessaire pour pouvoir parser correctement le XML
+                            */
+                            xmlData = xmlDoc.getElementsByTagName(q('#ext-root-element').value);
+                            affichage.classList.remove('error');
+                            /* on vide l'élément receveur */
+                            erase_childs(affichage);
+                            /* parser le contenu de la racine et l'afficher dans un élément */
+                            affichage.appendChild(parseXML(xmlData[0]));
+                        })
+                        .catch(e => console.error(e));
+                }else{
+                    
+                    let error = cTN('le lien vers la ressource et / ou le nom de l\'élément racine manque');
+                    erase_childs(affichage);
+                    affichage.classList.add('error');
+                    affichage.appendChild(error);
+                }
+            });
+
+            q('#resetXml').addEventListener('click', function () {
+                q('#listeXML').classList.remove('error');
+                erase_childs(q('#listeXML'));
+            });
         });
     </script>
 </head>
@@ -120,7 +174,8 @@
                     <li>Un créateur d'élément DOM
                         <ul>
                             <li>avec options pour inclure directement les attribut de l'élément.</li>
-                            <li>l'élément créé peut directement être ajouter en tant qu'enfant à un élément parent en indiquant le selecteur du parent</li>
+                            <li>l'élément créé peut directement être ajouter en tant qu'enfant à un élément parent en
+                                indiquant le selecteur du parent</li>
                         </ul>
                     </li>
                     <li>D'autres encore qui sont en cuisine</li>
@@ -166,7 +221,8 @@
                     <li>les noms des attribut de l'objet sont les noms des attributs de l'élément.</li>
                     <li>la valeur des attributs de l'objet sont les valeurs de l'attribut de l'élément</li>
                     <li>les attributs tels que ```class``` et ```style``` sont a renseigner en tableau</li>
-                    <li>on peut indique en troisième attribut l'objet DOM du parent dans lequel on ajoute le textnode /!\ PAS LE SÉLECTEUR /!\</li>
+                    <li>on peut indique en troisième attribut l'objet DOM du parent dans lequel on ajoute le textnode
+                        /!\ PAS LE SÉLECTEUR /!\</li>
                     <li>la fonction retourne par défaut l'élément créé</li>
                 </ul>
                 <code>
@@ -179,10 +235,11 @@
                 <h4>cTN(content, parent = null)</h4>
                 <ul>
                     <li>
-                        retourne un text node créé avec  <code>window.createTextNode(content)</code>
+                        retourne un text node créé avec <code>window.createTextNode(content)</code>
                     </li>
                     <li>
-                        Possibilité de mettre en second paramètre l'élément (en variable) parent dans lequel on ajoute le text node.                        
+                        Possibilité de mettre en second paramètre l'élément (en variable) parent dans lequel on ajoute
+                        le text node.
                     </li>
                     <li>
                         la fonction retourne par défaut le text node
@@ -198,9 +255,9 @@
                     </li>
                 </ul>
                 <p>
-                    <button id="btnTestEraseChilds" >
+                    <button id="btnTestEraseChilds">
                         Effacer les enfants de la div
-                    </button> 
+                    </button>
                     <button id="resetTestErase">
                         Remplir la div
                     </button>
@@ -210,6 +267,43 @@
                         <li>li enfant</li>
                     </ul>
                     <button>bouton test enfant</button>
+                </div>
+                <h4>ParseXML</h4>
+                <p>
+                    Permet de transformer une source XML en liste HTML.
+                </p>
+                <p>
+                    C'est une fonction récursive.
+                </p>
+                <p>
+                    Il faut le lien vers la ressource XML et le nom de l'élément racine du XML pour pouvoir le parcourir,<br />
+                    on le parse avec la fonction : <br />
+                    <code>const xmlDoc = parser.parseFromString(xmlFlux, 'application/xml');</code><br />
+                    <code>xmlData = xmlDoc.getElementsByTagName(&lt;élément racine&gt;);</code>
+
+                </p>
+                <p>
+                    <button id="XML" data-action="readxml" data-xmlsource="./ressources/repertoire.xml"
+                        data-target="listeXML" data-keyword="repertoire">Chercher le XML</button>
+                    <button id="resetXml">Vider l'affichage XML</button>
+                </p>
+                <hr />
+                <p>
+                    <button id="externXML">Lire un XML exterieur</button>
+                    </p>
+                    <p>
+                        <label>Lien vers la ressource XML</label> <input type="text" id="ext-ressource" /><br />
+                        <br />
+                        <code>ex : https://rss.nytimes.com/services/xml/rss/nyt/Movies.xml</code>
+                    </p>
+                    <p>
+                        <label>Élément racine</label> <input type="text" id="ext-root-element" /><br />
+                        <br />
+                        <code>exemple : channel</code>
+                    </p>
+                </p>
+                <div id="listeXML">
+
                 </div>
             </article>
         </section>
