@@ -155,3 +155,15 @@ function parseXML(xmlData, liste = null, userOptions = null){
     /* on renvoie la liste formée à l'appel */
     return liste;
 }
+
+function randomize(min = 0, max = 0){
+    if(isNaN(parseFloat(min)) || isNaN(parseFloat(max))){
+        return 0;
+    }else{
+        if(parseFloat(max) <= parseFloat(min)){
+            return 0;
+        }else{
+            return Math.floor(Math.random() * (parseFloat(max) - parseFloat(min) + 1)) + parseFloat(min);
+        }
+    }
+}
