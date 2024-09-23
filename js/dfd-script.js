@@ -155,7 +155,12 @@ function parseXML(xmlData, liste = null, userOptions = null){
     /* on renvoie la liste formée à l'appel */
     return liste;
 }
-
+/**
+ * Permet dse retourner un nombre entier entre le min et le max (compris)
+ * @param {int} min 
+ * @param {int} max 
+ * @returns int
+ */
 function randomize(min = 0, max = 0){
     if(isNaN(parseFloat(min)) || isNaN(parseFloat(max))){
         return 0;
@@ -166,4 +171,20 @@ function randomize(min = 0, max = 0){
             return Math.floor(Math.random() * (parseFloat(max) - parseFloat(min) + 1)) + parseFloat(min);
         }
     }
+}
+/**
+ * permet de faire un fetch vers une ressource et de lancer la fonction de traitement directement dans l'appel de la fonction
+ * @param {string} url 
+ * @param {*} callbackData 
+ */
+function getJSon(url, callbackData){
+    fetch(url)
+    .then(reponse=>reponse.json())
+    .then(data=>{
+        callbackData(data);
+    }).catch(erreur=>{
+        console.error(erreur);
+    }).finally(()=>{
+        console.log('fin de la transaction');
+    });
 }

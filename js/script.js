@@ -142,4 +142,18 @@ loaded(() => {
         const resRand = randomize(q('#randMin').value, q('#randMax').value);
         q('#resRandomize').innerText = resRand;
     });
+
+    function addJson(data){
+        const affData = q('#myJson');
+        let dataText = '';
+        data.forEach(element => {
+            for(key in element){
+                dataText = dataText + `${key} : ${element[key]}, `;
+            }
+            dataText = dataText + '\n';
+        });
+        affData.innerText = dataText;
+    }
+
+    getJSon('./json/user.json', addJson);
 });
